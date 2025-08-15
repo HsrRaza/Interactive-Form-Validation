@@ -39,27 +39,40 @@ document.querySelector(".formSubmit").addEventListener('click', (e) => {
 
       // validate email
     if (!emailRegex.test(email)) {
-        document.getElementById("mailError").textContent = "username is not valid"
+        document.getElementById("mailError").textContent = "Please enter a valid email address "
         isValid=false;
 
     }
       // validate email
     if (!phoneRegex.test(phone)) {
-        document.getElementById("phoneError").textContent = "username is not valid"
+        document.getElementById("phoneError").textContent = "Phone number must be 10 digits long and start with 6,7,8 or 9."
         isValid=false;
     }
 
     // validate confirm password
 
     if(c_password !==password){
-        document.getElementById("confirmPasswordError").textContent = "username is not valid"
+        document.getElementById("confirmPasswordError").textContent = "Password is not matching"
         isValid=false;
     }
 
+    let userData=[];
+
+
 
     if(isValid){
-        alert("Registration Successfull")
+       let formClass =  document.getElementsByClassName("form-control")
+       Array.from(formClass).forEach( (curElem) => userData.push(curElem.value))
+       Array.from(formClass).forEach((curElem) => (curElem.value = ""))
+
+  console.log(userData);
+  
+       alert("Registration Successfull")
+       
+
     }
+
+    // Hsr@1234567
 
 });
 
