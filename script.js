@@ -1,15 +1,66 @@
-document.querySelector(".formSubmit").addEventListener('click', (e)=>{
+document.querySelector(".formSubmit").addEventListener('click', (e) => {
     e.preventDefault();
-    
-    const username =document.getElementById("username").value;
-    const email =document.getElementById("email").value;
-    const phone=document.getElementById("phone").value;
-    const password=document.getElementById("password").value;
-    const c_password=document.getElementById("confirmPassword").value;
+
+    const username = document.getElementById("username").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+    const password = document.getElementById("password").value;
+    const c_password = document.getElementById("confirmPassword").value;
 
 
-    console.log(username);
-    
-})
+    // console.log(username);
+
+    // regualar Expression 
+    const usernameRegx = /^[A-za-z0 ]{3,20}$/;
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[\d])(?=.*[\W_]).{8,}$/
+    const emailRegex = /^[A-Za-z0-9]+(?:[.%_+][A-Za-z0-9]+)*@[A-Za-z0-9]+\.[A-Za-z]{2,}$/;
+    const phoneRegex = /^[6-9][\d]{9}$/;
+
+    //    clear Previous Errors
+
+    document.querySelectorAll('.error').forEach((curElem) => (curElem.textContent = ""))
+
+
+    let isValid = true;
+
+
+    // validate Username
+    if (!usernameRegx.test(username)) {
+        document.getElementById("usernameError").textContent = "username is not valid"
+        isValid=false;
+    }
+
+
+    // validate Password
+    if (!passwordRegex.test(password)) {
+        document.getElementById("passwordError").textContent = "Password must be Atleast 8 characters and include at least one uppercase letter, one lowercase letter, one number, and one special character "
+        isValid=false;
+    }
+
+      // validate email
+    if (!emailRegex.test(email)) {
+        document.getElementById("mailError").textContent = "username is not valid"
+        isValid=false;
+
+    }
+      // validate email
+    if (!phoneRegex.test(phone)) {
+        document.getElementById("phoneError").textContent = "username is not valid"
+        isValid=false;
+    }
+
+    // validate confirm password
+
+    if(c_password !==password){
+        document.getElementById("confirmPasswordError").textContent = "username is not valid"
+        isValid=false;
+    }
+
+
+    if(isValid){
+        alert("Registration Successfull")
+    }
+
+});
 
 
